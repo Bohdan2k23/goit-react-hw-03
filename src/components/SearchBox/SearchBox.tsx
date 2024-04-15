@@ -9,7 +9,7 @@ export default function SearchBox({ filter, setFilter }: Props) {
     <div className={css.box}>
       <h2>Find contacts by name</h2>
       <input
-        onInput={(ev) => setFilter(ev.currentTarget.value)}
+        onChange={(ev) => setFilter(ev.currentTarget.value)}
         type="text"
         placeholder="Find a contact"
         value={filter}
