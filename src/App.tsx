@@ -1,5 +1,5 @@
 import css from "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactForm from "./components/ContactForm/ContactForm";
@@ -31,15 +31,17 @@ function App() {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
+  useEffect(() => {
+    localStorage.setItem(localKey, JSON.stringify(contacts));
+  }, [contacts]);
+
   function addContact(contact: Contact) {
     const result = [...contacts, contact];
     setContacts(result);
-    localStorage.setItem(localKey, JSON.stringify(result));
   }
   function deleteContact(id: string) {
     const result = contacts.filter((contact) => contact.id !== id);
     setContacts(result);
-    localStorage.setItem(localKey, JSON.stringify(result));
   }
 
   return (
